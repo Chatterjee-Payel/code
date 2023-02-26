@@ -1,0 +1,41 @@
+class Solution
+{
+    public:
+    
+        string UncommonChars(string A, string B)
+        {
+            // code here
+          unordered_map<char,int>s1;
+          unordered_map<char,int>s2;
+          string res="";
+          for(int i=0;i<A.size();i++){
+              s1[A[i]]++;
+              
+          }
+          for(int i=0;i<B.size();i++){
+              s2[B[i]]++;
+          }
+          for(int i=0;i<A.size();i++){
+              if(s2[A[i]]==0){
+                  res+=A[i];
+              }
+          }
+          for(int i=0;i<B.size();i++){
+              if(s1[B[i]]==0){
+                  res+=B[i];
+              }
+          }
+          if(res.size()==0){
+              return "-1";
+          }
+          sort(res.begin(),res.end());
+          string ans="";
+          ans=ans+res[0];
+          for(int i=1;i<res.size();i++){
+              if(res[i]!=res[i-1]){
+                  ans+=res[i];
+              }
+          }
+          return ans;
+        }
+};
